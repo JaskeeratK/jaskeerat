@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaskeerat</title>
+</head>
+<style>
+    :root {
+      --cream: #f5e6d3;
+      --peach: #f9d5c8;
+      --sand: #d4a574;
+      --ink: #2a2a2a;
+      --accent: #ff6b35;
+      --text-dark: #8b4513;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #1a1a1a;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 120px 20px 40px;
+      min-height: 100vh;
+      color: white;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1100px;
+      z-index: 1000;
+      background: rgba(42, 42, 42, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 12px 30px;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-cta {
+      background: white;
+      color: black;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .nav-cta:hover {
+      transform: scale(1.05);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* BENTO GRID */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 100px 120px 220px;
+      gap: 20px;
+    }
+
+    /* BASE GRID ITEM */
+    .grid-item {
+      background: var(--ink);
+      border-radius: 24px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 35px rgba(0,0,0,0.35);
+    }
+
+    /* HERO */
+    .item-intro {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 2;
+      background: var(--cream);
+      color: var(--text-dark);
+    }
+
+    .intro-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .intro-title {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.25;
+    }
+
+    /* PHOTO */
+    .item-photo {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      background: linear-gradient(135deg, #ddb27c, #c89a63);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .photo-placeholder {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: white;
+      font-size: 18px;
+    }
+
+    /* SOCIALS */
+    .socials-standalone {
+      grid-column: 4;
+      grid-row: 1;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      height: 100%;
+      padding: 0 15px;
+    }
+
+    .social-box {
+      width: 100px;
+      height: 90px;
+      background: white;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .social-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    /* BIO */
+    .item-bio {
+      grid-column: 2 / span 2;
+      grid-row: 3;
+      background: linear-gradient(135deg, #f9d5c8, #f3c7b8);
+      color: var(--text-dark);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .item-bio p {
+      margin: 0;
+    }
+
+    /* SAY HI */
+    .item-sayhi {
+      grid-column: 1;
+      grid-row: 3;
+      background: var(--cream);
+      color: var(--text-dark);
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .item-sayhi:hover {
+      background: #f0ddc0;
+    }
+
+    .sayhi-text {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    /* VIEW PROJECTS */
+    .item-extra {
+      grid-column: 4;
+      grid-row: 2 / span 2;
+      background: linear-gradient(135deg, #242424, #1e1e1e);
+      border: 1px dashed #444;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .item-extra:hover {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, #2a2a2a, #242424);
+    }
+
+    .item-extra h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .item-extra p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* PROJECTS SECTION */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .project-card {
+      background: var(--ink);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 30px;
+    }
+
+    .project-content h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      color: white;
+      font-weight: 600;
+    }
+
+    .project-content p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 20px;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .project-tags span {
+      background: rgba(255, 107, 53, 0.15);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .item-intro,
+      .item-photo,
+      .socials-standalone,
+      .item-bio,
+      .item-sayhi,
+      .item-extra {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .navbar {
+        padding: 12px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #about-full > div,
+      #contact-full > div {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="nav-logo">Jaskeerat Kaur</div>
+      <div class="nav-links">
+        <a href="#projects">Work</a>
+        <a href="#about-full">About</a>
+        <a href="#contact-full">Contact</a>
+      </div>
+      <button class="nav-cta" onclick="document.querySelector('.item-sayhi').scrollIntoView()">
+        Let's Talk
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="bento-grid">
+      <!-- HERO -->
+      <section class="grid-item item-intro">
+        <div class="intro-icon">👋</div>
+        <h1 class="intro-title">
+          AI-Focused CS Student<br>
+          Building LLM Systems
+        </h1>
+      </section>
+
+      <!-- PHOTO -->
+      <section class="grid-item item-photo">
+        <div class="photo-placeholder">Your Photo</div>
+      </section>
+
+      <!-- SOCIALS -->
+      <section class="socials-standalone">
+        <a href="https://linkedin.com" target="_blank" class="social-box">in</a>
+        <a href="https://github.com" target="_blank" class="social-box">GH</a>
+      </section>
+
+      <!-- SAY HI -->
+      <section id="contact" class="grid-item item-sayhi" onclick="window.location.href='mailto:thejaskeerat@gmail.com'">
+        <div class="sayhi-text">Say hi 👋</div>
+      </section>
+
+      <!-- BIO -->
+      <section id="about" class="grid-item item-bio">
+        <p>
+          AI-focused CS undergrad skilled in building production-ready RAG systems, LLM-integrated applications, and FastAPI backends. 
+          Developed multiple projects across text, speech, and vision, with strong experience in vector databases. 
+          Awarded Best Data Scientist at Thapar Summer School.
+        </p>
+      </section>
+
+      <!-- VIEW PROJECTS -->
+      <section class="grid-item item-extra" onclick="document.getElementById('projects').scrollIntoView()">
+        <h3>View Projects →</h3>
+        <p>LLM Systems • ML • Deep Learning</p>
+      </section>
+    </div>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" style="margin-top: 80px;">
+      <h2 style="font-size: 48px; margin-bottom: 40px; color: var(--cream); font-family: Georgia, serif;">Featured Projects</h2>
+      
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="Time Series Forecasting">
+          </div>
+          <div class="project-content">
+            <h3>Context-Aware Time Series Forecasting with LLMs</h3>
+            <p>Implemented a research-backed forecasting pipeline using Walmart dataset. Compared ARIMA, LLM-only, and context-aware LLM approaches, demonstrating improved accuracy when contextual signals (holidays, store type, seasonality) were injected into the LLM.</p>
+            <div class="project-tags">
+              <span>LLM</span>
+              <span>Groq API</span>
+              <span>Time Series</span>
+              <span>ARIMA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop" alt="RAG System">
+          </div>
+          <div class="project-content">
+            <h3>RAG Application with ChromaDB, Groq & Streamlit</h3>
+            <p>Built an end-to-end Retrieval-Augmented Generation system using ChromaDB for vector storage and Groq LLaMA models for high-speed inference. Developed an interactive Streamlit UI enabling real-time Q&A over user-uploaded documents.</p>
+            <div class="project-tags">
+              <span>RAG</span>
+              <span>ChromaDB</span>
+              <span>Groq</span>
+              <span>Streamlit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop" alt="Stock Prediction">
+          </div>
+          <div class="project-content">
+            <h3>Stock Price Prediction & Visualization App</h3>
+            <p>Created a Streamlit dashboard to visualize historical stock data and generate predictions using time-series/ML model. Integrated live data fetching, interactive charts, and customizable prediction windows for user-selected stocks.</p>
+            <div class="project-tags">
+              <span>Streamlit</span>
+              <span>Time Series</span>
+              <span>ML</span>
+              <span>Data Visualization</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&h=600&fit=crop" alt="Leaf Disease Detection">
+          </div>
+          <div class="project-content">
+            <h3>Leaf Disease Detection System</h3>
+            <p>Developed a CNN-based image classification model to detect 38+ leaf diseases using PlantVillage dataset. Applied preprocessing, augmentation, and regularization techniques to improve model generalization and accuracy.</p>
+            <div class="project-tags">
+              <span>Deep Learning</span>
+              <span>CNN</span>
+              <span>TensorFlow</span>
+              <span>Computer Vision</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=800&h=600&fit=crop" alt="Connstel">
+          </div>
+          <div class="project-content">
+            <h3>Connstel - Hostel Connect Platform</h3>
+            <p>Full-stack web application connecting hostel residents with features for community building, announcements, and resource sharing. Built with Python backend and responsive frontend.</p>
+            <div class="project-tags">
+              <span>Python</span>
+              <span>JavaScript</span>
+              <span>HTML/CSS</span>
+              <span>Full Stack</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about-full" style="margin-top: 80px; margin-bottom: 80px;">
+      <h2 style="font-size: 48px; margin-bottom: 40px; color: var(--cream); font-family: Georgia, serif;">About Me</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+        <!-- Left Column - Bio -->
+        <div style="background: var(--ink); padding: 40px; border-radius: 24px;">
+          <h3 style="font-size: 24px; margin-bottom: 20px; color: var(--cream);">Background</h3>
+          <p style="font-size: 16px; line-height: 1.8; color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">
+            I'm an AI-focused Computer Science undergraduate at Punjabi University Patiala with a passion for building practical AI systems. 
+            My journey in AI development has led me to work on production-ready RAG pipelines, LLM integrations, and full-stack AI applications.
+          </p>
+          <p style="font-size: 16px; line-height: 1.8; color: rgba(255, 255, 255, 0.8);">
+            Currently pursuing my B.Tech in Computer Science with an 8.6 CGPA, I've had the opportunity to work as an AI Intern at Smartern X, 
+            where I built RAG systems using ChromaDB, Pinecone, and Weaviate, and developed FastAPI backends for AI-powered applications.
+          </p>
+        </div>
+
+        <!-- Right Column - Experience Highlights -->
+        <div>
+          <div style="background: var(--ink); padding: 40px; border-radius: 24px; margin-bottom: 20px;">
+            <h3 style="font-size: 24px; margin-bottom: 20px; color: var(--cream);">Experience</h3>
+            
+            <div style="margin-bottom: 24px;">
+              <h4 style="font-size: 18px; color: white; margin-bottom: 8px;">AI Intern - Smartern X</h4>
+              <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px;">June 2025 - August 2025 • Remote</p>
+              <p style="font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.7);">
+                Built RAG pipelines with ChromaDB, Pinecone & Weaviate. Developed FastAPI backends for AI Coach & Trainer with real-time inference. 
+                Integrated Groq Whisper STT and Cartesia TTS for voice interactions.
+              </p>
+            </div>
+
+            <div>
+              <h4 style="font-size: 18px; color: white; margin-bottom: 8px;">ML Trainee - Thapar Summer School</h4>
+              <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px;">June 2025 - July 2025 • Patiala</p>
+              <p style="font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.7);">
+                <strong style="color: var(--accent);">🏆 Awarded Best Data Scientist</strong> among 180+ participants. 
+                Completed intensive training in ML, DL, OpenCV, and Generative AI.
+              </p>
+            </div>
+          </div>
+
+          <div style="background: var(--ink); padding: 40px; border-radius: 24px;">
+            <h3 style="font-size: 24px; margin-bottom: 20px; color: var(--cream);">Skills</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">Python</span>
+              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">FastAPI</span>
+              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">ChromaDB</span>
+              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">LLM Integration</span>
+              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">TensorFlow</span>
+              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">MongoDB</span>
+              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">REST API</span>
+              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">Weaviate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact-full" style="margin-bottom: 80px;">
+      <h2 style="font-size: 48px; margin-bottom: 40px; color: var(--cream); font-family: Georgia, serif;">Get In Touch</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+        <!-- Email Card -->
+        <a href="mailto:thejaskeerat@gmail.com" style="background: var(--cream); padding: 40px; border-radius: 24px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+          <div style="font-size: 40px; margin-bottom: 16px;">📧</div>
+          <h3 style="font-size: 24px; margin-bottom: 12px; color: var(--text-dark);">Email</h3>
+          <p style="font-size: 18px; color: var(--text-dark); opacity: 0.8;">thejaskeerat@gmail.com</p>
+        </a>
+
+        <!-- LinkedIn Card -->
+        <a href="https://www.linkedin.com/in/jaskeerat-kaur-b2227b320/" target="_blank" style="background: var(--peach); padding: 40px; border-radius: 24px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+          <div style="font-size: 40px; margin-bottom: 16px;">💼</div>
+          <h3 style="font-size: 24px; margin-bottom: 12px; color: var(--text-dark);">LinkedIn</h3>
+          <p style="font-size: 18px; color: var(--text-dark); opacity: 0.8;">Connect with me</p>
+        </a>
+
+        <!-- GitHub Card -->
+        <a href="https://github.com/JaskeeratK" target="_blank" style="background: linear-gradient(135deg, #242424, #1e1e1e); padding: 40px; border-radius: 24px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+          <div style="font-size: 40px; margin-bottom: 16px;">💻</div>
+          <h3 style="font-size: 24px; margin-bottom: 12px; color: white;">GitHub</h3>
+          <p style="font-size: 18px; color: rgba(255, 255, 255, 0.7);">Check out my code</p>
+        </a>
+
+        <!-- Location Card -->
+        <div style="background: var(--sand); padding: 40px; border-radius: 24px;">
+          <div style="font-size: 40px; margin-bottom: 16px;">📍</div>
+          <h3 style="font-size: 24px; margin-bottom: 12px; color: white;">Location</h3>
+          <p style="font-size: 18px; color: white; opacity: 0.9;">Patiala, India</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
