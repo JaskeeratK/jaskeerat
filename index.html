@@ -28,7 +28,7 @@
     body {
       background: #1a1a1a;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      padding: 120px 20px 40px;
+      padding: 100px 20px 40px;
       min-height: 100vh;
       color: white;
     }
@@ -39,14 +39,14 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 100%;
+      width: calc(100% - 40px);
       max-width: 1100px;
       z-index: 1000;
       background: rgba(42, 42, 42, 0.85);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 16px;
-      padding: 12px 30px;
+      padding: 12px 20px;
     }
 
     .nav-content {
@@ -56,13 +56,13 @@
     }
 
     .nav-logo {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
     }
 
     .nav-links {
       display: flex;
-      gap: 35px;
+      gap: 25px;
     }
 
     .nav-links a {
@@ -80,11 +80,12 @@
       background: white;
       color: black;
       border: none;
-      padding: 10px 24px;
+      padding: 10px 20px;
       border-radius: 12px;
       font-weight: 600;
       cursor: pointer;
       transition: transform 0.2s;
+      font-size: 14px;
     }
 
     .nav-cta:hover {
@@ -140,23 +141,100 @@
       line-height: 1.25;
     }
 
-    /* PHOTO */
+    /* TERMINAL BOX */
     .item-photo {
       grid-column: 3;
       grid-row: 1 / span 2;
-      background: linear-gradient(135deg, #ddb27c, #c89a63);
+      background: #1e1e1e;
       padding: 0;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid #333;
+    }
+
+    .terminal-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Courier New', monospace;
+    }
+
+    .terminal-header {
+      background: #2d2d2d;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid #333;
+    }
+
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .terminal-title {
+      margin-left: auto;
+      font-size: 11px;
+      color: #888;
+    }
+
+    .terminal-body {
+      padding: 15px;
+      flex: 1;
       overflow: hidden;
     }
 
-    .photo-placeholder {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      color: white;
-      font-size: 18px;
+    .terminal-line {
+      color: #00ff00;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 4px;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .terminal-line:nth-child(1) { animation-delay: 0.5s; }
+    .terminal-line:nth-child(2) { animation-delay: 1.5s; }
+    .terminal-line:nth-child(3) { animation-delay: 2.5s; }
+    .terminal-line:nth-child(4) { animation-delay: 3.5s; }
+    .terminal-line:nth-child(5) { animation-delay: 4.5s; }
+    .terminal-line:nth-child(6) { animation-delay: 5.5s; }
+
+    .terminal-prompt {
+      color: #888;
+    }
+
+    .terminal-command {
+      color: #61dafb;
+    }
+
+    .terminal-output {
+      color: #98c379;
+      margin-left: 0;
+    }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: #00ff00;
+      animation: blink 1s infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
     }
 
     /* SOCIALS */
@@ -166,13 +244,14 @@
       display: flex;
       gap: 15px;
       align-items: center;
+      justify-content: center;
       height: 100%;
       padding: 0 15px;
     }
 
     .social-box {
-      width: 100px;
-      height: 90px;
+      width: 90px;
+      height: 80px;
       background: white;
       border-radius: 18px;
       display: flex;
@@ -324,11 +403,173 @@
       font-weight: 500;
     }
 
-    /* Responsive */
+    /* Section Headers */
+    .section-header {
+      font-size: 48px;
+      margin-bottom: 40px;
+      color: var(--cream);
+      font-family: Georgia, serif;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .about-card {
+      background: var(--ink);
+      padding: 40px;
+      border-radius: 24px;
+    }
+
+    .about-card h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: var(--cream);
+    }
+
+    .about-text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 20px;
+    }
+
+    .experience-item {
+      margin-bottom: 24px;
+    }
+
+    .experience-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .experience-title {
+      font-size: 18px;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .experience-meta {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 12px;
+    }
+
+    .experience-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: rgba(255, 107, 53, 0.15);
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .contact-card {
+      padding: 40px;
+      border-radius: 24px;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .contact-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .contact-title {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .contact-text {
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 968px) {
+      body {
+        padding: 90px 15px 30px;
+      }
+
+      .navbar {
+        width: calc(100% - 30px);
+        padding: 10px 15px;
+      }
+
+      .nav-logo {
+        font-size: 16px;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .nav-links a {
+        font-size: 13px;
+      }
+
+      .nav-cta {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .section-header {
+        font-size: 36px;
+        margin-bottom: 30px;
+      }
+
+      .about-card {
+        padding: 30px;
+      }
+    }
+
     @media (max-width: 768px) {
+      body {
+        padding: 80px 15px 30px;
+      }
+
       .bento-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
+        gap: 15px;
       }
 
       .item-intro,
@@ -339,23 +580,141 @@
       .item-extra {
         grid-column: 1;
         grid-row: auto;
+        min-height: 180px;
       }
 
-      .navbar {
-        padding: 12px 20px;
+      .item-intro {
+        padding: 25px;
+      }
+
+      .intro-title {
+        font-size: 26px;
+      }
+
+      .intro-icon {
+        font-size: 35px;
+      }
+
+      .socials-standalone {
+        min-height: 120px;
+        gap: 10px;
+      }
+
+      .social-box {
+        width: 80px;
+        height: 80px;
+        font-size: 16px;
+      }
+
+      .item-bio {
+        font-size: 16px;
+        padding: 25px;
+      }
+
+      .sayhi-text {
+        font-size: 22px;
+      }
+
+      .item-extra h3 {
+        font-size: 18px;
+      }
+
+      .gradient-icon {
+        font-size: 50px;
+      }
+
+      .gradient-text {
+        font-size: 16px;
+      }
+
+      .terminal-body {
+        padding: 12px;
+      }
+
+      .terminal-line {
+        font-size: 11px;
       }
 
       .nav-links {
         display: none;
       }
 
-      .projects-grid {
-        grid-template-columns: 1fr;
+      .section-header {
+        font-size: 32px;
+        margin-bottom: 25px;
       }
 
-      #about-full > div,
-      #contact-full > div {
-        grid-template-columns: 1fr !important;
+      .project-image {
+        height: 200px;
+      }
+
+      .project-content {
+        padding: 25px;
+      }
+
+      .project-content h3 {
+        font-size: 20px;
+      }
+
+      .project-content p {
+        font-size: 15px;
+      }
+
+      .about-card {
+        padding: 25px;
+      }
+
+      .about-card h3 {
+        font-size: 20px;
+      }
+
+      .about-text {
+        font-size: 15px;
+      }
+
+      .contact-card {
+        padding: 30px;
+      }
+
+      .contact-icon {
+        font-size: 35px;
+      }
+
+      .contact-title {
+        font-size: 20px;
+      }
+
+      .contact-text {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        top: 10px;
+        width: calc(100% - 20px);
+      }
+
+      .nav-logo {
+        font-size: 14px;
+      }
+
+      .nav-cta {
+        padding: 7px 12px;
+        font-size: 12px;
+      }
+
+      .section-header {
+        font-size: 28px;
+      }
+
+      .intro-title {
+        font-size: 22px;
+      }
+
+      .social-box {
+        width: 70px;
+        height: 70px;
       }
     }
   </style>
@@ -386,15 +745,44 @@
         </h1>
       </section>
 
-      <!-- PHOTO -->
+      <!-- TERMINAL ANIMATION -->
       <section class="grid-item item-photo">
-        <div class="photo-placeholder">Your Photo</div>
+        <div class="terminal-container">
+          <div class="terminal-header">
+            <div class="terminal-dot dot-red"></div>
+            <div class="terminal-dot dot-yellow"></div>
+            <div class="terminal-dot dot-green"></div>
+            <div class="terminal-title">jas@portfolio:~</div>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="terminal-prompt">$</span>
+              <span class="terminal-command"> python ai_engineer.py</span>
+            </div>
+            <div class="terminal-line terminal-output">
+              Initializing RAG pipeline...
+            </div>
+            <div class="terminal-line terminal-output">
+              Loading vector database... ✓
+            </div>
+            <div class="terminal-line terminal-output">
+              Connecting to LLM... ✓
+            </div>
+            <div class="terminal-line terminal-output">
+              System ready. Building the future.
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">$</span>
+              <span class="terminal-cursor"></span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- SOCIALS -->
       <section class="socials-standalone">
-        <a href="https://linkedin.com" target="_blank" class="social-box">in</a>
-        <a href="https://github.com" target="_blank" class="social-box">GH</a>
+        <a href="https://www.linkedin.com/in/jaskeerat-kaur-b2227b320/" target="_blank" class="social-box">in</a>
+        <a href="https://github.com/JaskeeratK" target="_blank" class="social-box">GH</a>
       </section>
 
       <!-- SAY HI -->
@@ -420,7 +808,7 @@
 
     <!-- PROJECTS SECTION -->
     <section id="projects" style="margin-top: 80px;">
-      <h2 style="font-size: 48px; margin-bottom: 40px; color: var(--cream); font-family: Georgia, serif;">Featured Projects</h2>
+      <h2 class="section-header">Featured Projects</h2>
       
       <div class="projects-grid">
         <!-- Project 1 -->
@@ -512,17 +900,17 @@
 
     <!-- ABOUT SECTION -->
     <section id="about-full" style="margin-top: 80px; margin-bottom: 80px;">
-      <h2 style="font-size: 48px; margin-bottom: 40px; color: var(--cream); font-family: Georgia, serif;">About Me</h2>
+      <h2 class="section-header">About Me</h2>
       
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+      <div class="about-grid">
         <!-- Left Column - Bio -->
-        <div style="background: var(--ink); padding: 40px; border-radius: 24px;">
-          <h3 style="font-size: 24px; margin-bottom: 20px; color: var(--cream);">Background</h3>
-          <p style="font-size: 16px; line-height: 1.8; color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">
+        <div class="about-card">
+          <h3>Background</h3>
+          <p class="about-text">
             I'm an AI-focused Computer Science undergraduate at Punjabi University Patiala with a passion for building practical AI systems. 
             My journey in AI development has led me to work on production-ready RAG pipelines, LLM integrations, and full-stack AI applications.
           </p>
-          <p style="font-size: 16px; line-height: 1.8; color: rgba(255, 255, 255, 0.8);">
+          <p class="about-text">
             Currently pursuing my B.Tech in Computer Science with an 8.6 CGPA, I've had the opportunity to work as an AI Intern at Smartern X, 
             where I built RAG systems using ChromaDB, Pinecone, and Weaviate, and developed FastAPI backends for AI-powered applications.
           </p>
@@ -530,39 +918,39 @@
 
         <!-- Right Column - Experience Highlights -->
         <div>
-          <div style="background: var(--ink); padding: 40px; border-radius: 24px; margin-bottom: 20px;">
-            <h3 style="font-size: 24px; margin-bottom: 20px; color: var(--cream);">Experience</h3>
+          <div class="about-card" style="margin-bottom: 20px;">
+            <h3>Experience</h3>
             
-            <div style="margin-bottom: 24px;">
-              <h4 style="font-size: 18px; color: white; margin-bottom: 8px;">AI Intern - Smartern X</h4>
-              <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px;">June 2025 - August 2025 • Remote</p>
-              <p style="font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.7);">
+            <div class="experience-item">
+              <h4 class="experience-title">AI Intern - Smartern X</h4>
+              <p class="experience-meta">June 2025 - August 2025 • Remote</p>
+              <p class="experience-desc">
                 Built RAG pipelines with ChromaDB, Pinecone & Weaviate. Developed FastAPI backends for AI Coach & Trainer with real-time inference. 
                 Integrated Groq Whisper STT and Cartesia TTS for voice interactions.
               </p>
             </div>
 
-            <div>
-              <h4 style="font-size: 18px; color: white; margin-bottom: 8px;">ML Trainee - Thapar Summer School</h4>
-              <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px;">June 2025 - July 2025 • Patiala</p>
-              <p style="font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.7);">
+            <div class="experience-item">
+              <h4 class="experience-title">ML Trainee - Thapar Summer School</h4>
+              <p class="experience-meta">June 2025 - July 2025 • Patiala</p>
+              <p class="experience-desc">
                 <strong style="color: var(--accent);">🏆 Awarded Best Data Scientist</strong> among 180+ participants. 
                 Completed intensive training in ML, DL, OpenCV, and Generative AI.
               </p>
             </div>
           </div>
 
-          <div style="background: var(--ink); padding: 40px; border-radius: 24px;">
-            <h3 style="font-size: 24px; margin-bottom: 20px; color: var(--cream);">Skills</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">Python</span>
-              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">FastAPI</span>
-              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">ChromaDB</span>
-              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">LLM Integration</span>
-              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">TensorFlow</span>
-              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">MongoDB</span>
-              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">REST API</span>
-              <span style="background: rgba(255, 107, 53, 0.15); color: var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 14px;">Weaviate</span>
+          <div class="about-card">
+            <h3>Skills</h3>
+            <div class="skills-container">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">ChromaDB</span>
+              <span class="skill-tag">LLM Integration</span>
+              <span class="skill-tag">TensorFlow</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">REST API</span>
+              <span class="skill-tag">Weaviate</span>
             </div>
           </div>
         </div>
@@ -571,37 +959,38 @@
 
     <!-- CONTACT SECTION -->
     <section id="contact-full" style="margin-bottom: 80px;">
-      <h2 style="font-size: 48px; margin-bottom: 40px; color: var(--cream); font-family: Georgia, serif;">Get In Touch</h2>
+      <h2 class="section-header">Get In Touch</h2>
       
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+      <div class="contact-grid">
         <!-- Email Card -->
-        <a href="mailto:thejaskeerat@gmail.com" style="background: var(--cream); padding: 40px; border-radius: 24px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-          <div style="font-size: 40px; margin-bottom: 16px;">📧</div>
-          <h3 style="font-size: 24px; margin-bottom: 12px; color: var(--text-dark);">Email</h3>
-          <p style="font-size: 18px; color: var(--text-dark); opacity: 0.8;">thejaskeerat@gmail.com</p>
+        <a href="mailto:thejaskeerat@gmail.com" class="contact-card" style="background: var(--cream);">
+          <div class="contact-icon">📧</div>
+          <h3 class="contact-title" style="color: var(--text-dark);">Email</h3>
+          <p class="contact-text" style="color: var(--text-dark);">thejaskeerat@gmail.com</p>
         </a>
 
         <!-- LinkedIn Card -->
-        <a href="https://www.linkedin.com/in/jaskeerat-kaur-b2227b320/" target="_blank" style="background: var(--peach); padding: 40px; border-radius: 24px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-          <div style="font-size: 40px; margin-bottom: 16px;">💼</div>
-          <h3 style="font-size: 24px; margin-bottom: 12px; color: var(--text-dark);">LinkedIn</h3>
-          <p style="font-size: 18px; color: var(--text-dark); opacity: 0.8;">Connect with me</p>
+        <a href="https://www.linkedin.com/in/jaskeerat-kaur-b2227b320/" target="_blank" class="contact-card" style="background: var(--peach);">
+          <div class="contact-icon">💼</div>
+          <h3 class="contact-title" style="color: var(--text-dark);">LinkedIn</h3>
+          <p class="contact-text" style="color: var(--text-dark);">Connect with me</p>
         </a>
 
         <!-- GitHub Card -->
-        <a href="https://github.com/JaskeeratK" target="_blank" style="background: linear-gradient(135deg, #242424, #1e1e1e); padding: 40px; border-radius: 24px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-          <div style="font-size: 40px; margin-bottom: 16px;">💻</div>
-          <h3 style="font-size: 24px; margin-bottom: 12px; color: white;">GitHub</h3>
-          <p style="font-size: 18px; color: rgba(255, 255, 255, 0.7);">Check out my code</p>
+        <a href="https://github.com/JaskeeratK" target="_blank" class="contact-card" style="background: linear-gradient(135deg, #242424, #1e1e1e);">
+          <div class="contact-icon">💻</div>
+          <h3 class="contact-title" style="color: white;">GitHub</h3>
+          <p class="contact-text" style="color: rgba(255, 255, 255, 0.7);">Check out my code</p>
         </a>
 
         <!-- Location Card -->
-        <div style="background: var(--sand); padding: 40px; border-radius: 24px;">
-          <div style="font-size: 40px; margin-bottom: 16px;">📍</div>
-          <h3 style="font-size: 24px; margin-bottom: 12px; color: white;">Location</h3>
-          <p style="font-size: 18px; color: white; opacity: 0.9;">Patiala, India</p>
+        <div class="contact-card" style="background: var(--sand);">
+          <div class="contact-icon">📍</div>
+          <h3 class="contact-title" style="color: white;">Location</h3>
+          <p class="contact-text" style="color: white;">Patiala, India</p>
         </div>
       </div>
     </section>
   </div>
 </body>
+</html>
