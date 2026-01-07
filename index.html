@@ -237,6 +237,57 @@
       50%, 100% { opacity: 0; }
     }
 
+    /* SCROLL ANIMATIONS */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    .stagger-5 { transition-delay: 0.5s; }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .slide-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
     /* SOCIALS */
     .socials-standalone {
       grid-column: 4;
@@ -250,8 +301,8 @@
     }
 
     .social-box {
-      width: 110px;
-      height: 90px;
+      width: 120px;
+      height: 100px;
       background: white;
       border-radius: 18px;
       display: flex;
@@ -808,11 +859,11 @@
 
     <!-- PROJECTS SECTION -->
     <section id="projects" style="margin-top: 80px;">
-      <h2 class="section-header">Featured Projects</h2>
+      <h2 class="section-header fade-in-up">Featured Projects</h2>
       
       <div class="projects-grid">
         <!-- Project 1 -->
-        <div class="project-card">
+        <div class="project-card fade-in-up stagger-1">
           <div class="project-image">
             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="Time Series Forecasting">
           </div>
@@ -829,7 +880,7 @@
         </div>
 
         <!-- Project 2 -->
-        <div class="project-card">
+        <div class="project-card fade-in-up stagger-2">
           <div class="project-image">
             <img src="images/rag-app01 (1).png" alt="RAG System">
           </div>
@@ -846,7 +897,7 @@
         </div>
 
         <!-- Project 3 -->
-        <div class="project-card">
+        <div class="project-card fade-in-up stagger-3">
           <div class="project-image">
             <img src="images/stock-price-prediction-1 (1) (1).png" alt="Stock Prediction">
           </div>
@@ -863,7 +914,7 @@
         </div>
 
         <!-- Project 4 -->
-        <div class="project-card">
+        <div class="project-card fade-in-up stagger-4">
           <div class="project-image">
             <img src="images/leaf (1).png" alt="Leaf Disease Detection">
           </div>
@@ -880,7 +931,7 @@
         </div>
 
         <!-- Project 5 -->
-        <div class="project-card">
+        <div class="project-card fade-in-up stagger-5">
           <div class="project-image">
             <img src="images/connstel4.PNG" alt="Connstel">
           </div>
@@ -900,27 +951,28 @@
 
     <!-- ABOUT SECTION -->
     <section id="about-full" style="margin-top: 80px; margin-bottom: 80px;">
-      <h2 class="section-header">About Me</h2>
+      <h2 class="section-header fade-in-up">About Me</h2>
       
       <div class="about-grid">
         <!-- Left Column - Bio -->
-        <div class="about-card">
+        <div class="about-card slide-in-left">
           <h3>Background</h3>
           <p class="about-text">
-              I'm an AI-focused Computer Science undergraduate at Punjabi University Patiala with a strong passion for designing
+             I'm an AI-focused Computer Science undergraduate at Punjabi University Patiala with a strong passion for designing
               and building practical, real-world AI systems. My journey in AI development has involved working extensively with modern language models, 
               developing RAG pipelines, integrating LLMs into applications,
               and creating end-to-end full-stack AI solutions that emphasize scalability, performance, and usability.
           </p>
           <p class="about-text">
-              Currently pursuing my B.Tech in Computer Science with an 8.77 CGPA, I actively explore advanced AI concepts through hands-on projects,
+             Currently pursuing my B.Tech in Computer Science with an 8.77 CGPA, I actively explore advanced AI concepts through hands-on projects,
               including vector databases, semantic search, prompt engineering, and API-driven AI architectures. I enjoy translating complex AI ideas into reliable software systems,
               experimenting with emerging tools in the AI ecosystem, and continuously refining my engineering skills to build intelligent applications that solve meaningful problems.
+          
           </p>
         </div>
 
         <!-- Right Column - Experience Highlights -->
-        <div>
+        <div class="slide-in-right">
           <div class="about-card" style="margin-bottom: 20px;">
             <h3>Experience</h3>
             
@@ -962,32 +1014,32 @@
 
     <!-- CONTACT SECTION -->
     <section id="contact-full" style="margin-bottom: 80px;">
-      <h2 class="section-header">Get In Touch</h2>
+      <h2 class="section-header fade-in-up">Get In Touch</h2>
       
       <div class="contact-grid">
         <!-- Email Card -->
-        <a href="mailto:thejaskeerat@gmail.com" class="contact-card" style="background: var(--cream);">
+        <a href="mailto:thejaskeerat@gmail.com" class="contact-card scale-in stagger-1" style="background: var(--cream);">
           <div class="contact-icon">📧</div>
           <h3 class="contact-title" style="color: var(--text-dark);">Email</h3>
           <p class="contact-text" style="color: var(--text-dark);">thejaskeerat@gmail.com</p>
         </a>
 
         <!-- LinkedIn Card -->
-        <a href="https://www.linkedin.com/in/jaskeerat-kaur-b2227b320/" target="_blank" class="contact-card" style="background: var(--peach);">
+        <a href="https://www.linkedin.com/in/jaskeerat-kaur-b2227b320/" target="_blank" class="contact-card scale-in stagger-2" style="background: var(--peach);">
           <div class="contact-icon">💼</div>
           <h3 class="contact-title" style="color: var(--text-dark);">LinkedIn</h3>
           <p class="contact-text" style="color: var(--text-dark);">Connect with me</p>
         </a>
 
         <!-- GitHub Card -->
-        <a href="https://github.com/JaskeeratK" target="_blank" class="contact-card" style="background: linear-gradient(135deg, #242424, #1e1e1e);">
+        <a href="https://github.com/JaskeeratK" target="_blank" class="contact-card scale-in stagger-3" style="background: linear-gradient(135deg, #242424, #1e1e1e);">
           <div class="contact-icon">💻</div>
           <h3 class="contact-title" style="color: white;">GitHub</h3>
           <p class="contact-text" style="color: rgba(255, 255, 255, 0.7);">Check out my code</p>
         </a>
 
         <!-- Location Card -->
-        <div class="contact-card" style="background: var(--sand);">
+        <div class="contact-card scale-in stagger-4" style="background: var(--sand);">
           <div class="contact-icon">📍</div>
           <h3 class="contact-title" style="color: white;">Location</h3>
           <p class="contact-text" style="color: white;">Patiala, India</p>
@@ -995,5 +1047,27 @@
       </div>
     </section>
   </div>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animated elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const animatedElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .scale-in');
+      animatedElements.forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
