@@ -881,20 +881,24 @@
 
         <!-- Project 2 -->
         <div class="project-card fade-in-up stagger-2">
-          <div class="project-image">
-            <img src="images/rag-app01 (1).png" alt="RAG System">
-          </div>
-          <div class="project-content">
-            <h3>RAG Application with ChromaDB, Groq & Streamlit</h3>
-            <p>Built an end-to-end Retrieval-Augmented Generation system using ChromaDB for vector storage and Groq LLaMA models for high-speed inference. Developed an interactive Streamlit UI enabling real-time Q&A over user-uploaded documents.</p>
-            <div class="project-tags">
-              <span>RAG</span>
-              <span>ChromaDB</span>
-              <span>Groq</span>
-              <span>Streamlit</span>
-            </div>
-          </div>
-        </div>
+  <div class="project-image">
+    <img src="images/ria5.PNG" alt="Repo Impact Analyzer">
+  </div>
+  <div class="project-content">
+    <h3>RIA: Repo Impact Analyzer (RAG for Codebases)</h3>
+    <p>
+  Developed a repository-aware RAG system that clones and indexes full codebases, enabling natural language queries on code impact. 
+  Used tree-sitter for AST-based chunking, ChromaDB for semantic retrieval, and a custom dependency graph to identify affected modules. 
+  Combined retrieval + structural analysis with LLaMA 3.1 (Groq) to generate precise, context-grounded answers for large-scale repos.
+</p>
+    <div class="project-tags">
+      <span>RAG</span>
+      <span>ChromaDB</span>
+      <span>FastAPI</span>
+      <span>Groq (LLaMA 3)</span>
+    </div>
+  </div>
+</div>
 
         <!-- Project 3 -->
         <div class="project-card fade-in-up stagger-3">
@@ -1088,7 +1092,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // project links
   const links = [
     "https://github.com/JaskeeratK/Context-is-Key",
-    "https://github.com/JaskeeratK/RAG_chromaDB_Groq_streamlit",
+    "https://github.com/JaskeeratK/repo-impact-rag",
     "https://github.com/JaskeeratK/SLM",
     "https://github.com/JaskeeratK/Leaf-Disease-Prediction",
     "https://github.com/JaskeeratK/hostel-connect"
@@ -1102,24 +1106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-      // Project card click handlers (GitHub links)
-// document.addEventListener('DOMContentLoaded', () => {
-//   const links = [
-//     "https://github.com/JaskeeratK/Context-is-Key",
-//     "https://github.com/JaskeeratK/RAG_chromaDB_Groq_streamlit",
-//     "https://github.com/JaskeeratK/SLM",
-//     "https://github.com/JaskeeratK/Leaf-Disease-Prediction",
-//     "https://github.com/JaskeeratK/hostel-connect"
-//   ];
-
-//   const cards = document.querySelectorAll('.project-card');
-
-//   cards.forEach((card, index) => {
-//     card.addEventListener('click', () => {
-//       window.open(links[index], '_blank');
-//     });
-//   });
-// });
+   
   </script>
 </body>
 </html>
