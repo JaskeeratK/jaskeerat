@@ -1058,19 +1058,50 @@ Pretrained on WikiText-2 using causal language modeling; achieved validation per
       rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
+    // const observer = new IntersectionObserver((entries) => {
+    //   entries.forEach(entry => {
+    //     if (entry.isIntersecting) {
+    //       entry.target.classList.add('visible');
+    //     }
+    //   });
+    // }, observerOptions);
 
-    // Observe all animated elements
-    document.addEventListener('DOMContentLoaded', () => {
-      const animatedElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .scale-in');
-      animatedElements.forEach(el => observer.observe(el));
+    // // Observe all animated elements
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   const animatedElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .scale-in');
+    //   animatedElements.forEach(el => observer.observe(el));
+    // });
+      const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+// Observe + add click handlers
+document.addEventListener('DOMContentLoaded', () => {
+  // animation observer
+  const animatedElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .scale-in');
+  animatedElements.forEach(el => observer.observe(el));
+
+  // project links
+  const links = [
+    "https://github.com/JaskeeratK/Context-is-Key",
+    "https://github.com/JaskeeratK/RAG_chromaDB_Groq_streamlit",
+    "https://github.com/JaskeeratK/SLM",
+    "https://github.com/JaskeeratK/Leaf-Disease-Prediction",
+    "https://github.com/JaskeeratK/hostel-connect"
+  ];
+
+  const cards = document.querySelectorAll('.project-card');
+
+  cards.forEach((card, index) => {
+    card.addEventListener('click', () => {
+      window.open(links[index], '_blank');
     });
+  });
+});
       // Project card click handlers (GitHub links)
 // document.addEventListener('DOMContentLoaded', () => {
 //   const links = [
